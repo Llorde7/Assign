@@ -1,0 +1,56 @@
+from datetime import datetime
+
+class AgeCalculator:
+    def __init__(self):
+        self.name = ""
+        self.year_of_birth = 0
+        self.current_date = datetime.now()
+        self.current_year = self.current_date.year
+        self.current_month = self.current_date.month
+        self.current_day = self.current_date.day
+        self.age_years = 0
+        self.age_months = 0
+        self.age_days = 0
+
+    def input_user_info(self):
+        self.name = input("Please Enter your Name: ")
+        print(f"Welcome to the calculator, {self.name}!")
+        self.year_of_birth = int(input("Please Enter your Year of Birth: "))
+
+    def calculate_age(self):
+        self.age_years = self.current_year - self.year_of_birth
+
+        if self.current_month < 12 or (self.current_month == 12 and self.current_day >= 1):
+            self.age_months = (self.current_month - 1) + 12 * (self.age_years - 1)
+        else:
+            self.age_months = self.current_month + 12 * self.age_years
+
+        if self.current_month < 12 or (self.current_month == 12 and self.current_day >= 1):
+            self.age_days = (self.current_month - 1) * 30 + self.current_day
+        else:
+            self.age_days = self.current_day
+
+    def display_age(self):
+        print(f"Your age is {self.age_years} years, {self.age_months} months, and {self.age_days} days.")
+
+class Calculator:
+    def __init__(self):
+        self.number1 = 0
+        self.number2 = 0
+
+    def input_numbers(self):
+        self.number1 = int(input("Please Enter the First Number: "))
+        self.number2 = int(input("Please Enter the Second Number: "))
+
+    def calculate_sum(self):
+        result = self.number1 + self.number2
+        print(f"The sum of {self.number1} and {self.number2} is {result}")
+
+age_calculator = AgeCalculator()
+age_calculator.input_user_info()
+age_calculator.calculate_age()
+age_calculator.display_age()
+
+calculator = Calculator()
+calculator.input_numbers()
+calculator.calculate_sum()
